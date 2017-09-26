@@ -1,0 +1,47 @@
+<html>
+<head><title>TestAuth</title></head>
+
+<body>
+
+<center><h1>TestAuth</h1><br><button onclick="auth()">Authorize</button>
+
+
+
+  <script>
+function auth() {
+"Use strict";
+
+/*
+*              		   TestAuth
+*/
+const app = {
+ id: "net.app.zero",
+ name: "Safe Web Demo",
+ version: '1',
+ vendor: "Puchong",
+};
+
+var permissions = {
+ _public: ['Read']
+};
+
+(function() {
+ console.log('Initialising website');
+ window.safeApp.initialise(app)
+   .then((appInit) => {
+     console.log("Initialise Token :" + appInit);
+     console.log("Authorising website");
+     window.safeApp.authorise(appInit, permissions)
+       .then((auth) => {
+         alert(auth);
+       }, (err) => {
+         console.error(err);
+       });
+   })
+   ((err) => {
+     console.error(err);
+   });
+})();
+}
+
+</script></body>
